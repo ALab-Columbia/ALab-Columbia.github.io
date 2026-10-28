@@ -29,6 +29,9 @@ body.dark{--bg:#101927;--paper:#172436;--ink:#edf3fc;--muted:#9aabc1;--line:#2a3
 .page-intro .back-to-lab:hover{text-decoration:underline}
 #modal-description{white-space:pre-line}
 .gallery-pending{font-size:13px;color:var(--muted);margin:12px 0}
+.postponed-status{display:inline-block;margin-left:6px;padding:3px 8px;border-radius:6px;background:#fff1df;color:#92551a;font-size:11px;font-weight:700;vertical-align:middle}
+.meeting.postponed{border-left:3px solid #c18c47}
+body.dark .postponed-status{background:#55391e;color:#ffcf8b}
 </style><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"></head><body>
 <header><div class="container nav"><a class="brand" href="#top"><div class="brand-icon">◎</div><div class="brand-text"><strong>ANDERSON LAB</strong><small>Columbia University</small></div></a><nav class="navlinks"><a class="active" href="#meetings">Meetings</a><a href="#archive">Archive</a><a href="#about">About</a><button class="dark-toggle" id="theme" aria-label="Toggle dark mode">☾</button></nav></div></header>
 <main class="container" id="top"><div class="page-intro"><span class="eyebrow">ANDERSON LAB / FALL 2026</span><h1>Group Meetings <span>& Guest Seminars</span></h1><p>Upcoming talks and a record of past visitors.</p><a class="back-to-lab" href="https://www.columbia.edu/~ja3451/">← Back to James Anderson’s website</a></div>
@@ -62,14 +65,26 @@ function initFeaturedTalk(){
  const link=document.getElementById("feature-link");
  if(m.paper||m.website){link.href=m.paper||m.website;link.textContent=m.paper?"Read paper ↗":"Speaker website ↗";link.style.display="";}else{link.style.display="none";}
 }
-function showSchedule(){document.getElementById("schedule-list").innerHTML=upcoming.map((m,i)=>{const d=new Date(m.date+"T12:00:00");return '<div class="meeting"><div class="date"><small>'+d.toLocaleString("en-US",{month:"short"}).toUpperCase()+'</small><strong>'+String(d.getDate()).padStart(2,"0")+'</strong></div><div style="display:flex;gap:13px;align-items:center"><img src="'+encodeURI(m.photo)+'" alt="" style="width:52px;height:56px;object-fit:cover;border-radius:9px;background:var(--soft)" onerror="this.style.display=\'none\'"><div><h3>'+safe(m.name)+' · '+safe(m.title)+'</h3><p>'+safe(m.affiliation)+' · '+safe(m.time)+' · '+safe(m.location)+'</p></div></div><button class="btn alt" data-upcoming="'+i+'" style="white-space:nowrap">Details ↗</button></div>'}).join("");document.querySelectorAll("[data-upcoming]").forEach(b=>b.onclick=()=>openTalk(featuredTalks[Number(b.dataset.upcoming)]));document.getElementById("schedule-toggle").textContent="Confirmed guest talks";}
+function showSchedule(){
+ const scheduled=upcoming.map((m,i)=>{
+  const d=new Date(m.date+"T12:00:00");
+  return '<div class="meeting"><div class="date"><small>'+d.toLocaleString("en-US",{month:"short"}).toUpperCase()+'</small><strong>'+String(d.getDate()).padStart(2,"0")+'</strong></div><div style="display:flex;gap:13px;align-items:center"><img src="'+encodeURI(m.photo)+'" alt="" style="width:52px;height:56px;object-fit:cover;border-radius:9px;background:var(--soft)" onerror="this.style.display=\'none\'"><div><h3>'+safe(m.name)+' · '+safe(m.title)+'</h3><p>'+safe(m.affiliation)+' · '+safe(m.time)+' · '+safe(m.location)+'</p></div></div><button class="btn alt" data-upcoming="'+i+'" style="white-space:nowrap">Details ↗</button></div>';
+ });
+ const postponed=postponedTalks.map((m,i)=>
+  '<div class="meeting postponed"><div class="date"><small>DATE</small><strong style="font-size:20px">TBD</strong></div><div style="display:flex;gap:13px;align-items:center"><img src="'+encodeURI(m.photo)+'" alt="" style="width:52px;height:56px;object-fit:cover;border-radius:9px;background:var(--soft)" onerror="this.style.display=\'none\'"><div><h3>'+safe(m.name)+' · Guest Seminar <span class="postponed-status">Postponed</span></h3><p>'+safe(m.affiliation)+' · New date to be announced</p></div></div><button class="btn alt" data-postponed="'+i+'" style="white-space:nowrap">Details ↗</button></div>'
+ );
+ document.getElementById("schedule-list").innerHTML=[...scheduled,...postponed].join("");
+ document.querySelectorAll("[data-upcoming]").forEach(b=>b.onclick=()=>openTalk(upcoming[Number(b.dataset.upcoming)]));
+ document.querySelectorAll("[data-postponed]").forEach(b=>b.onclick=()=>openTalk(postponedTalks[Number(b.dataset.postponed)]));
+ document.getElementById("schedule-toggle").textContent="Guest talks";
+}
 document.getElementById("schedule-toggle").onclick=()=>document.getElementById("archive").scrollIntoView({behavior:"smooth"});
 function showArchive(){const q=document.getElementById("search").value.trim().toLowerCase();const selected=talks.filter(t=>(filter==="All"||t.kind===filter)&&[t.name,t.affiliation,t.title,t.topic].join(" ").toLowerCase().includes(q)).sort((a,b)=>b.date.localeCompare(a.date));document.getElementById("visitor-grid").innerHTML=selected.map((t,i)=>'<button class="visitor" data-id="'+t.id+'"><div class="portrait s'+(t.id)+'">'+(t.photo?'<img src="'+encodeURI(t.photo)+'" alt="Photo of '+safe(t.name)+'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><span class="monogram" style="display:none">'+safe(t.initials)+'</span>':'<span class="monogram">'+safe(t.initials)+'</span><span class="photo-note">Photo placeholder</span>')+'</div><div class="visitor-content"><span class="visitor-date">'+safe(pretty(t.date).toUpperCase())+'</span><h3>'+safe(t.name)+'</h3><span class="affiliation">'+safe(t.affiliation)+'</span><p class="visitor-title">'+safe(t.title)+'</p><div class="visitor-footer"><span class="tag">'+safe(t.topic)+'</span><span>↗</span></div></div></button>').join("");document.getElementById("empty").style.display=selected.length?"none":"block";document.querySelectorAll(".visitor").forEach(el=>el.onclick=()=>openTalk(talks.find(t=>t.id===Number(el.dataset.id))))}
 document.querySelectorAll(".filter").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll(".filter").forEach(e=>e.classList.toggle("selected",e===b));showArchive()});document.getElementById("search").addEventListener("input",showArchive);
 const modal=document.getElementById("detail");
 function openTalk(t){
- document.getElementById("modal-kicker").textContent=pretty(t.date)+" · "+t.kind+" talk";
- document.getElementById("modal-title").textContent=t.title;
+ document.getElementById("modal-kicker").textContent=t.status==="Postponed"?"Postponed · New date to be announced":pretty(t.date)+" · "+t.kind+" talk";
+ document.getElementById("modal-title").textContent=t.status==="Postponed"&&t.title==="Title to be announced"?"Guest Seminar":t.title;
  document.getElementById("modal-name").textContent=t.name+" · "+t.affiliation;
  document.getElementById("modal-description").textContent=t.abstract||"";
  document.getElementById("modal-meta").textContent="Topic: "+t.topic+(t.time?" · "+t.time:"")+(t.location?" · "+t.location:"");
