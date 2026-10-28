@@ -1,0 +1,47 @@
+name: Deploy Anderson Lab Meetings to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out new organization repository
+        uses: actions/checkout@v4
+      - name: Import original Anderson Lab meetings website if not yet migrated
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -f index.html ]; then
+            git clone --depth 1 https://github.com/kasrafallah/Groupmeeting_test.git /tmp/anderson-lab-meetings
+            rsync -a --exclude='.git/' --exclude='.github/workflows/deploy.yml' /tmp/anderson-lab-meetings/ ./
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -A
+            if ! git diff --cached --quiet; then
+              git commit -m 'Migrate complete Anderson Lab meeting website to ALab-Columbia'
+              git push origin HEAD:main
+            fi
+          fi
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
