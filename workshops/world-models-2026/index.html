@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f8f9fb">
-<title>World Model Mini-Workshop · ALab · Columbia University</title>
+<title>Mini-Workshop on World Models · ALab · Columbia University</title>
 <meta name="description" content="World Model Mini-Workshop, October 29, 2026, at Columbia University. Talks on world models for control, reinforcement learning, robotics and planning.">
 <link rel="canonical" href="https://alab-columbia.github.io/workshops/world-models-2026/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -30,23 +30,87 @@ header{height:90px;background:var(--paper);border-bottom:1px solid var(--line)}.
 body.dark{--bg:#101927;--paper:#172436;--ink:#edf3fc;--muted:#9aabc1;--line:#2a3a4d;--accent:#91b7ff;--soft:#283d5a}body.dark .photo-placeholder{border-color:#47617f}
 @media(max-width:800px){.container{padding:0 20px}.navlinks{gap:14px}.navlinks a{font-size:11px}.hero-grid{grid-template-columns:1fr}.art{height:210px}.section{margin-top:65px}.hero{padding-top:42px}}
 @media(max-width:520px){header{height:auto}.nav{flex-wrap:wrap}.brand{padding:14px 0 7px}.brand-icon{width:34px;height:34px}.brand-text strong{font-size:10px}.navlinks{width:100%;justify-content:space-between;gap:8px;padding:8px 0 14px}.navlinks a{font-size:11px}.dark-toggle{padding:7px 9px}.hero h1{font-size:50px}.hero{padding-top:26px}.breadcrumbs{margin-bottom:20px}.meta{gap:7px}.meta span{font-size:11px}.quick-stats{gap:6px}.stat{padding:14px 12px}.stat strong{font-size:32px}.stat span{font-size:10px}.talk{grid-template-columns:56px 1fr;gap:10px;padding:19px 15px}.talk .tag{grid-column:2;justify-self:start}.talk h3{font-size:22px}.section-head h2{font-size:34px}.gallery{grid-template-columns:1fr}.discussion{grid-template-columns:1fr;padding:28px}.discussion-mark{display:none}.footer-inner{flex-direction:column}}
+
+/* The workshop uses a research-specific diagram rather than the decorative globe. */
+.hero-grid{grid-template-columns:1.04fr .96fr}
+.jepa-art{height:360px;background:#ecf3fc;border:1px solid #d5e2f3;box-shadow:0 18px 44px rgba(30,65,118,.07);padding:10px;border-radius:22px}
+.jepa-art::before,.jepa-art::after{content:none;display:none}
+.jepa-art svg{width:100%;height:100%;font-family:'DM Sans',system-ui,sans-serif}
+.speaker-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.speaker-card{overflow:hidden;background:var(--paper);border:1px solid var(--line);border-radius:17px;box-shadow:0 10px 28px rgba(22,49,86,.035)}
+.speaker-portrait{height:224px;position:relative;display:grid;place-items:center;background:linear-gradient(145deg,#dfebfa,#a7bddc);overflow:hidden}
+.speaker-portrait .initials{font:500 82px var(--serif);color:#ffffffdb;letter-spacing:-.05em}
+.speaker-portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.speaker-body{padding:20px 22px 23px}
+.speaker-body h3{font:500 28px var(--serif);letter-spacing:-.02em;margin:0 0 5px}
+.speaker-body p{font-size:12px;color:var(--muted);margin:0 0 16px}
+.speaker-topic{display:block;font-size:12px;line-height:1.65;font-weight:600;border-top:1px solid var(--line);padding-top:14px}
+body.dark .jepa-art{background:#dfeafa;border-color:#466a98}
+@media(max-width:1050px){.navlinks{gap:12px}.navlinks a{font-size:11px}.hero-grid{grid-template-columns:1fr}.jepa-art{height:340px}.speaker-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){header{height:auto}.nav{flex-wrap:wrap;gap:0}.brand{padding:14px 0 7px}.navlinks{width:100%;justify-content:space-between;flex-wrap:wrap;gap:9px;padding:9px 0 14px}.navlinks a{font-size:11px}.speaker-grid{grid-template-columns:1fr}.jepa-art{height:auto;min-height:250px;aspect-ratio:640/408;padding:5px}.hero h1{font-size:46px}}
 </style>
 </head>
 <body>
 <header><div class="container nav">
 <a class="brand" href="/"><div class="brand-icon" aria-label="ALab logo">ALab</div><div class="brand-text"><strong>ANDERSON LAB</strong><small>Columbia University</small></div></a>
-<nav class="navlinks" aria-label="Main navigation"><a href="/#meetings">Meetings</a><a href="/#archive">Archive</a><a class="active" href="/workshops/world-models-2026/" aria-current="page">Mini Workshop</a><a href="/#about">About</a><button class="dark-toggle" id="theme" aria-label="Toggle dark mode">☾</button></nav>
+<nav class="navlinks" aria-label="Main navigation"><a href="/#meetings">Meetings</a><a href="/#archive">Archive</a><a class="active" href="/workshops/world-models-2026/" aria-current="page">Mini-Workshop on World Models</a><a href="/#about">About</a><button class="dark-toggle" id="theme" aria-label="Toggle dark mode">☾</button></nav>
 </div></header>
 <main class="container">
 <section class="hero">
-<div class="breadcrumbs"><a href="/">ALab</a><span>/</span><span>Mini Workshop</span></div>
+<div class="breadcrumbs"><a href="/">ALab</a><span>/</span><span>Mini-Workshop on World Models</span></div>
 <div class="hero-grid">
-<div><span class="eyebrow">SPECIAL EVENT · OCTOBER 29, 2026</span><h1>World Model <em>Mini-Workshop</em></h1>
+<div><span class="eyebrow">SPECIAL EVENT · OCTOBER 29, 2026</span><h1>Mini-Workshop on <em>World Models</em></h1>
 <p class="lede">An afternoon of research conversations on world models for prediction, planning, control, reinforcement learning, and robotics, bringing together speakers from Columbia University, NYU, and USC.</p>
-<div class="meta"><span>◷ &nbsp;From 1:30 PM</span><span>⌖ &nbsp;Columbia University · New York</span><span>6 research talks + discussion</span></div></div>
-<div class="art" aria-hidden="true"><div class="art-word">Representation · Dynamics · Planning</div></div>
+<div class="meta"><span>◷ &nbsp;From 1:30 PM</span><span>⌖ &nbsp;Columbia University · New York</span></div></div>
+<div class="art jepa-art" role="img" aria-label="JEPA-style world model: observations are encoded into latent representations, a predictor forecasts a future latent state, and a target encoder supplies a future latent for alignment.">
+<svg viewBox="0 0 640 408" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+ <marker id="arrowBlue" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#3a72c6"/></marker>
+ <marker id="arrowTeal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#0eaea9"/></marker>
+ <linearGradient id="latentBackground" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eff5ff"/><stop offset="1" stop-color="#d7e8fc"/></linearGradient>
+</defs>
+<text x="28" y="34" fill="#4e719f" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" letter-spacing="2">PREDICTION IN REPRESENTATION SPACE</text>
+<!-- Top: online branch -->
+<rect x="26" y="72" width="84" height="75" rx="12" fill="#fff" stroke="#acc6e8" stroke-width="2"/>
+<path d="M40 119C53 95 60 131 75 103S99 111 100 91" fill="none" stroke="#5287d3" stroke-width="3.4" stroke-linecap="round"/>
+<text x="68" y="173" text-anchor="middle" font-size="16" font-weight="700" fill="#3b5b83">xₜ</text>
+<path d="M112 109H142" stroke="#3a72c6" stroke-width="3" marker-end="url(#arrowBlue)"/>
+<rect x="150" y="79" width="110" height="61" rx="12" fill="url(#latentBackground)" stroke="#9ebde7" stroke-width="2"/>
+<text x="205" y="103" text-anchor="middle" font-size="16" font-weight="700" fill="#224d84">Context</text>
+<text x="205" y="124" text-anchor="middle" font-size="16" font-weight="700" fill="#224d84">encoder</text>
+<path d="M262 109H288" stroke="#3a72c6" stroke-width="3" marker-end="url(#arrowBlue)"/>
+<rect x="296" y="81" width="64" height="57" rx="12" fill="#fff" stroke="#a9c8ef" stroke-width="2"/>
+<g fill="#3c7ad4"><circle cx="312" cy="98" r="4.5"/><circle cx="328" cy="98" r="4.5"/><circle cx="344" cy="98" r="4.5"/><circle cx="312" cy="120" r="4.5"/><circle cx="328" cy="120" r="4.5"/><circle cx="344" cy="120" r="4.5"/></g>
+<text x="328" y="173" text-anchor="middle" font-size="16" font-weight="700" fill="#3b5b83">zₜ</text>
+<path d="M363 109H389" stroke="#3a72c6" stroke-width="3" marker-end="url(#arrowBlue)"/>
+<rect x="397" y="74" width="108" height="70" rx="15" fill="#dceaff" stroke="#8baee3" stroke-width="2"/>
+<text x="451" y="103" text-anchor="middle" font-size="16" font-weight="700" fill="#224d84">Latent</text>
+<text x="451" y="123" text-anchor="middle" font-size="16" font-weight="700" fill="#224d84">predictor</text>
+<text x="451" y="57" text-anchor="middle" font-size="14" font-weight="600" fill="#53749a">actions</text>
+<path d="M451 62V72" stroke="#3a72c6" stroke-width="2.3" marker-end="url(#arrowBlue)"/>
+<path d="M507 109H539" stroke="#3a72c6" stroke-width="3" marker-end="url(#arrowBlue)"/>
+<rect x="547" y="81" width="66" height="57" rx="12" fill="#ecfbf8" stroke="#77cfc2" stroke-width="2"/>
+<g fill="#13aea8"><circle cx="563" cy="98" r="4.5"/><circle cx="579" cy="98" r="4.5"/><circle cx="595" cy="98" r="4.5"/><circle cx="563" cy="120" r="4.5"/><circle cx="579" cy="120" r="4.5"/><circle cx="595" cy="120" r="4.5"/></g>
+<text x="580" y="173" text-anchor="middle" font-size="16" font-weight="700" fill="#008a82">ẑₜ₊ₖ</text>
+<!-- Bottom: target branch -->
+<rect x="26" y="272" width="84" height="75" rx="12" fill="#fff" stroke="#acc6e8" stroke-width="2"/>
+<path d="M40 322C54 299 70 326 81 296S99 311 101 289" fill="none" stroke="#0daaa7" stroke-width="3.4" stroke-linecap="round"/>
+<text x="68" y="371" text-anchor="middle" font-size="16" font-weight="700" fill="#3b5b83">xₜ₊ₖ</text>
+<path d="M112 309H142" stroke="#3a72c6" stroke-width="3" marker-end="url(#arrowBlue)"/>
+<rect x="150" y="279" width="110" height="61" rx="12" fill="#e4f8f4" stroke="#91d9d0" stroke-width="2"/>
+<text x="205" y="304" text-anchor="middle" font-size="16" font-weight="700" fill="#137a76">Target</text>
+<text x="205" y="325" text-anchor="middle" font-size="16" font-weight="700" fill="#137a76">encoder</text>
+<path d="M262 309H539" stroke="#3a72c6" stroke-width="3" marker-end="url(#arrowBlue)"/>
+<rect x="547" y="281" width="66" height="57" rx="12" fill="#ecfbf8" stroke="#77cfc2" stroke-width="2"/>
+<g fill="#13aea8"><circle cx="563" cy="298" r="4.5"/><circle cx="579" cy="298" r="4.5"/><circle cx="595" cy="298" r="4.5"/><circle cx="563" cy="320" r="4.5"/><circle cx="579" cy="320" r="4.5"/><circle cx="595" cy="320" r="4.5"/></g>
+<text x="580" y="371" text-anchor="middle" font-size="16" font-weight="700" fill="#008a82">zₜ₊ₖ</text>
+<!-- Predictor/target alignment -->
+<path d="M580 179V279" fill="none" stroke="#0eaea9" stroke-width="3" stroke-dasharray="8 7" marker-end="url(#arrowTeal)"/>
+<rect x="433" y="214" width="126" height="34" rx="17" fill="#fff" stroke="#91d9d0"/>
+<text x="496" y="236" text-anchor="middle" font-size="14" font-weight="700" fill="#0c807b">latent alignment</text>
+<text x="26" y="400" font-size="12" fill="#6f87a9" font-family="DM Sans, sans-serif">Illustrative JEPA-style world model · not a depiction of any particular talk</text>
+</svg></div>
 </div></section>
-<div class="quick-stats" aria-label="Workshop at a glance"><div class="stat"><strong>06</strong><span>Research talks</span></div><div class="stat"><strong>03</strong><span>Universities represented by speakers</span></div><div class="stat"><strong>01</strong><span>Group discussion</span></div></div>
 <section class="section" id="program"><div class="section-head"><div><span class="eyebrow">THURSDAY · OCTOBER 29</span><h2>The program</h2><p>Armen Avanessians Conference Room · 14th Floor (DSI Suite), Northwest Corner Building</p></div></div>
 <div class="schedule">
 <article class="talk"><div class="time">1:30 PM</div><div><h3>Oumayma Bounou</h3><div class="institution">New York University</div><p class="talk-title">Planning with world models: control-aware representations and gradient-based optimization</p></div><span class="tag">Planning & control</span></article>
@@ -59,11 +123,18 @@ body.dark{--bg:#101927;--paper:#172436;--ink:#edf3fc;--muted:#9aabc1;--line:#2a3
 <article class="talk"><div class="time">4:45 PM</div><div><h3>Ying Wang</h3><div class="institution">New York University</div><p class="talk-title">Towards World Models That Learn and Adapt in an Open World</p></div><span class="tag">Adaptation</span></article>
 <article class="talk"><div class="time">5:15 PM</div><div><h3>Group Discussion</h3><p class="talk-title">Open discussion with workshop participants</p></div><span class="tag">Conversation</span></article>
 </div></section>
+<section class="section" id="speakers"><div class="section-head"><div><span class="eyebrow">THE SPEAKERS</span><h2>Speakers</h2><p>Researchers and their talks from the October 29 mini-workshop.</p></div></div><div class="speaker-grid">
+<article class="speaker-card"><div class="speaker-portrait"><span class="initials">OB</span><img src="/assets/workshops/world-models-2026/speakers/oumayma-bounou.jpg" alt="Oumayma Bounou" loading="lazy" onerror="this.remove()"></div><div class="speaker-body"><h3>Oumayma Bounou</h3><p>New York University</p><span class="speaker-topic">Control-aware representations and planning</span></div></article>
+<article class="speaker-card"><div class="speaker-portrait"><span class="initials">ST</span><img src="/assets/workshops/world-models-2026/speakers/stephen-tu.jpg" alt="Stephen Tu" loading="lazy" onerror="this.remove()"></div><div class="speaker-body"><h3>Stephen Tu</h3><p>University of Southern California</p><span class="speaker-topic">Short-context prediction in dynamical systems</span></div></article>
+<article class="speaker-card"><div class="speaker-portrait"><span class="initials">AB</span><img src="/assets/workshops/world-models-2026/speakers/adam-block.jpg" alt="Adam Block" loading="lazy" onerror="this.remove()"></div><div class="speaker-body"><h3>Adam Block</h3><p>Columbia University</p><span class="speaker-topic">Exploration in reinforcement learning</span></div></article>
+<article class="speaker-card"><div class="speaker-portrait"><span class="initials">YL</span><img src="/assets/workshops/world-models-2026/speakers/yunzhu-li.jpg" alt="Yunzhu Li" loading="lazy" onerror="this.remove()"></div><div class="speaker-body"><h3>Yunzhu Li</h3><p>Columbia University · Remote</p><span class="speaker-topic">Structured world models for robotics</span></div></article>
+<article class="speaker-card"><div class="speaker-portrait"><span class="initials">RA</span><img src="/assets/workshops/world-models-2026/speakers/rohun-agrawal.jpg" alt="Rohun Agrawal" loading="lazy" onerror="this.remove()"></div><div class="speaker-body"><h3>Rohun Agrawal</h3><p>Columbia University</p><span class="speaker-topic">Gradient-based planning with world models</span></div></article>
+<article class="speaker-card"><div class="speaker-portrait"><span class="initials">YW</span><img src="/assets/workshops/world-models-2026/speakers/ying-wang.jpg" alt="Ying Wang" loading="lazy" onerror="this.remove()"></div><div class="speaker-body"><h3>Ying Wang</h3><p>New York University</p><span class="speaker-topic">Learning and adaptation in an open world</span></div></article>
+</div></section>
 <section class="section" id="photos"><div class="section-head"><div><span class="eyebrow">MOMENTS FROM THE WORKSHOP</span><h2>A photo story</h2><p class="photo-intro">A visual record of the talks, research exchanges, and conversations around the workshop.</p></div></div>
 <div class="gallery" id="photo-gallery" hidden></div>
 <div class="photo-placeholder" id="photo-pending"><div class="photo-symbol" aria-hidden="true">▧</div><h3>Photo story coming soon</h3><p>Photographs from the talks and group discussion will appear here as they are added to the workshop archive.</p></div>
 </section>
-<section class="section"><div class="discussion"><div><span class="eyebrow" style="color:#b9d5fa">BEYOND THE TALKS</span><h2>Continuing the conversation</h2><p>The workshop concluded with a group discussion, creating space to exchange questions and perspectives across world modeling, learning, and control.</p></div><div class="discussion-mark" aria-hidden="true">“”</div></div></section>
 <p class="support">This event was kindly sponsored by the <strong>Data Science Institute Center for Physical AI</strong> at Columbia University.</p>
 </main>
 <footer><div class="container footer-inner"><span>© <span id="year"></span> Anderson Lab · Columbia University</span><span><a href="/">← Back to ALab</a></span></div></footer>
