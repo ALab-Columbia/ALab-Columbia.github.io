@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f8f9fb">
+<title>World Model Mini-Workshop · ALab · Columbia University</title>
+<meta name="description" content="World Model Mini-Workshop, October 29, 2026, at Columbia University. Talks on world models for control, reinforcement learning, robotics and planning.">
+<link rel="canonical" href="https://alab-columbia.github.io/workshops/world-models-2026/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ALab · Columbia University">
+<meta property="og:title" content="World Model Mini-Workshop · Columbia University">
+<meta property="og:description" content="Six research talks and an open discussion on world models, control, planning and robotics. October 29, 2026.">
+<meta property="og:url" content="https://alab-columbia.github.io/workshops/world-models-2026/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f8f9fb;--paper:#fff;--ink:#17253b;--muted:#718096;--line:#e8ebf1;--accent:#2355b5;--soft:#edf3fd;--serif:Newsreader,Georgia,serif;--sans:'DM Sans',system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}button{font:inherit;cursor:pointer}.container{max-width:1190px;padding:0 34px;margin:auto}
+header{height:90px;background:var(--paper);border-bottom:1px solid var(--line)}.nav{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:13px}.brand-icon{width:40px;height:40px;display:grid;place-items:center;color:#fff;background:#193e79;border-radius:12px;font-size:11px;letter-spacing:-.6px;font-weight:800;box-shadow:inset 0 0 0 1.5px #5ed8cb}.brand-text strong{display:block;font-size:13px;letter-spacing:.13em}.brand-text small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.navlinks{display:flex;gap:30px;align-items:center}.navlinks a{font-size:13px;font-weight:600;color:var(--muted)}.navlinks a:hover,.navlinks a.active{color:var(--ink)}.dark-toggle{border:1px solid var(--line);background:transparent;border-radius:12px;padding:10px 12px;color:var(--ink)}
+.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700}.hero{padding:78px 0 40px}.breadcrumbs{display:flex;gap:9px;align-items:center;color:var(--muted);font-size:12px;margin-bottom:34px}.breadcrumbs a:hover{color:var(--accent)}.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center}.hero h1{font-family:var(--serif);font-size:clamp(52px,7vw,88px);font-weight:500;line-height:1.04;letter-spacing:-.048em;margin:16px 0 22px}.hero h1 em{font-weight:400;color:var(--accent)}.lede{font-size:16px;line-height:1.85;color:var(--muted);max-width:670px}.meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}.meta span{padding:11px 14px;background:var(--paper);border:1px solid var(--line);border-radius:10px;font-size:12px;font-weight:600}.art{height:320px;border-radius:24px;position:relative;overflow:hidden;background:radial-gradient(circle at 30% 20%,#607fc1,transparent 45%),linear-gradient(145deg,#183965,#08192f);border:1px solid #2c527d}.art:before,.art:after{content:"";position:absolute;border:1px solid #a5dfe0a0;width:240px;height:240px;border-radius:34% 66% 58% 42%;transform:rotate(25deg);left:17%;top:9%;box-shadow:0 0 0 30px #bddcef12,0 0 0 63px #bddcef09}.art:after{border-color:#cedcff82;width:160px;height:160px;left:34%;top:26%;transform:rotate(-28deg);box-shadow:0 0 0 26px #b7d1fc15}.art .art-word{position:absolute;bottom:26px;left:27px;letter-spacing:.16em;font-size:10px;color:#e1f1ff;text-transform:uppercase}
+.section{margin-top:82px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:25px}.section-head h2{font-family:var(--serif);font-size:42px;letter-spacing:-.025em;font-weight:500;margin:10px 0 0}.section-head p{font-size:13px;color:var(--muted);line-height:1.7}.quick-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0 0}.stat{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:22px 26px}.stat strong{font-family:var(--serif);font-size:42px;font-weight:500}.stat span{font-size:12px;display:block;color:var(--muted);margin-top:4px}
+.schedule{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--paper)}.talk{display:grid;grid-template-columns:77px 1fr auto;gap:24px;align-items:start;padding:25px 29px;border-bottom:1px solid var(--line)}.talk:last-child{border-bottom:0}.time{font-weight:700;font-size:12px;color:var(--accent);padding-top:4px;white-space:nowrap}.talk h3{font-family:var(--serif);font-size:25px;font-weight:500;margin:0 0 4px;line-height:1.25}.talk .institution{font-size:11px;color:var(--muted)}.talk .talk-title{font-size:13px;line-height:1.65;font-weight:600;margin:9px 0 0}.tag{display:inline-block;border-radius:24px;background:var(--soft);color:var(--accent);font-size:10px;font-weight:700;padding:8px 11px;white-space:nowrap}.interlude{background:var(--bg)}.interlude .time{color:var(--muted)}.interlude h3{font:600 12px var(--sans);color:var(--muted);margin:0}.interlude .talk-title{margin:0;color:var(--muted);font-weight:400}
+.photo-intro{line-height:1.8;color:var(--muted);max-width:640px}.photo-placeholder{background:var(--paper);border:1px dashed #bdcde2;border-radius:20px;padding:48px 22px;text-align:center}.photo-symbol{font-size:35px;color:var(--accent)}.photo-placeholder h3{font-family:var(--serif);font-size:28px;font-weight:500;margin:14px 0 5px}.photo-placeholder p{font-size:13px;color:var(--muted);max-width:480px;line-height:1.7;margin:0 auto}.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.gallery figure{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden}.gallery img{width:100%;height:205px;object-fit:cover;display:block;cursor:zoom-in}.gallery figcaption{font-size:12px;color:var(--muted);line-height:1.6;padding:13px 16px}.discussion{background:#193a69;color:#fff;border-radius:20px;padding:36px 42px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}.discussion h2{font-family:var(--serif);font-size:35px;font-weight:500;margin:9px 0}.discussion p{color:#cbd9ea;line-height:1.8;font-size:13px;max-width:680px}.discussion .discussion-mark{font-family:var(--serif);font-size:90px;color:#78aac1;line-height:1}
+.support{margin-top:50px;text-align:center;color:var(--muted);font-size:12px;line-height:1.8}.support strong{color:var(--ink)}footer{margin-top:74px;border-top:1px solid var(--line);padding:30px 0 45px;color:var(--muted);font-size:12px}.footer-inner{display:flex;justify-content:space-between;gap:20px}
+#lightbox{border:0;border-radius:14px;padding:16px;background:#101927;color:white;width:min(1050px,96vw);max-height:94vh}#lightbox::backdrop{background:#07182cdb}#lightbox img{max-height:78vh;max-width:100%;display:block;margin:0 auto;object-fit:contain}#lightbox button{float:right;background:none;color:#fff;border:0;font-size:28px}.lightbox-caption{font-size:12px;color:#cbd9ea;padding:12px 6px 2px}
+body.dark{--bg:#101927;--paper:#172436;--ink:#edf3fc;--muted:#9aabc1;--line:#2a3a4d;--accent:#91b7ff;--soft:#283d5a}body.dark .photo-placeholder{border-color:#47617f}
+@media(max-width:800px){.container{padding:0 20px}.navlinks{gap:14px}.navlinks a{font-size:11px}.hero-grid{grid-template-columns:1fr}.art{height:210px}.section{margin-top:65px}.hero{padding-top:42px}}
+@media(max-width:520px){header{height:auto}.nav{flex-wrap:wrap}.brand{padding:14px 0 7px}.brand-icon{width:34px;height:34px}.brand-text strong{font-size:10px}.navlinks{width:100%;justify-content:space-between;gap:8px;padding:8px 0 14px}.navlinks a{font-size:11px}.dark-toggle{padding:7px 9px}.hero h1{font-size:50px}.hero{padding-top:26px}.breadcrumbs{margin-bottom:20px}.meta{gap:7px}.meta span{font-size:11px}.quick-stats{gap:6px}.stat{padding:14px 12px}.stat strong{font-size:32px}.stat span{font-size:10px}.talk{grid-template-columns:56px 1fr;gap:10px;padding:19px 15px}.talk .tag{grid-column:2;justify-self:start}.talk h3{font-size:22px}.section-head h2{font-size:34px}.gallery{grid-template-columns:1fr}.discussion{grid-template-columns:1fr;padding:28px}.discussion-mark{display:none}.footer-inner{flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="container nav">
+<a class="brand" href="/"><div class="brand-icon" aria-label="ALab logo">ALab</div><div class="brand-text"><strong>ANDERSON LAB</strong><small>Columbia University</small></div></a>
+<nav class="navlinks" aria-label="Main navigation"><a href="/#meetings">Meetings</a><a href="/#archive">Archive</a><a class="active" href="/workshops/world-models-2026/" aria-current="page">Mini Workshop</a><a href="/#about">About</a><button class="dark-toggle" id="theme" aria-label="Toggle dark mode">☾</button></nav>
+</div></header>
+<main class="container">
+<section class="hero">
+<div class="breadcrumbs"><a href="/">ALab</a><span>/</span><span>Mini Workshop</span></div>
+<div class="hero-grid">
+<div><span class="eyebrow">SPECIAL EVENT · OCTOBER 29, 2026</span><h1>World Model <em>Mini-Workshop</em></h1>
+<p class="lede">An afternoon of research conversations on world models for prediction, planning, control, reinforcement learning, and robotics, bringing together speakers from Columbia University, NYU, and USC.</p>
+<div class="meta"><span>◷ &nbsp;1:30–5:15 PM</span><span>⌖ &nbsp;Columbia University · New York</span><span>6 research talks + discussion</span></div></div>
+<div class="art" aria-hidden="true"><div class="art-word">Representation · Dynamics · Planning</div></div>
+</div></section>
+<div class="quick-stats" aria-label="Workshop at a glance"><div class="stat"><strong>06</strong><span>Research talks</span></div><div class="stat"><strong>03</strong><span>Universities represented by speakers</span></div><div class="stat"><strong>01</strong><span>Group discussion</span></div></div>
+<section class="section" id="program"><div class="section-head"><div><span class="eyebrow">THURSDAY · OCTOBER 29</span><h2>The program</h2><p>Armen Avanessians Conference Room · 14th Floor (DSI Suite), Northwest Corner Building</p></div></div>
+<div class="schedule">
+<article class="talk"><div class="time">1:30 PM</div><div><h3>Oumayma Bounou</h3><div class="institution">New York University</div><p class="talk-title">Planning with world models: control-aware representations and gradient-based optimization</p></div><span class="tag">Planning & control</span></article>
+<article class="talk"><div class="time">2:00 PM</div><div><h3>Stephen Tu</h3><div class="institution">University of Southern California</div><p class="talk-title">Short-Context Prediction in Continuous-State Dynamical Systems</p></div><span class="tag">Dynamics</span></article>
+<div class="talk interlude"><div class="time">2:30 PM</div><div><h3>Break</h3></div></div>
+<article class="talk"><div class="time">3:00 PM</div><div><h3>Adam Block</h3><div class="institution">Columbia University</div><p class="talk-title">Improving Exploration in RLVR through Retries</p></div><span class="tag">Exploration</span></article>
+<article class="talk"><div class="time">3:30 PM</div><div><h3>Yunzhu Li</h3><div class="institution">Columbia University · Remote talk</div><p class="talk-title">Structured World Models as Scalable Data Engines for Robotics</p></div><span class="tag">Robotics</span></article>
+<div class="talk interlude"><div class="time">4:00 PM</div><div><h3>Break</h3></div></div>
+<article class="talk"><div class="time">4:15 PM</div><div><h3>Rohun Agrawal</h3><div class="institution">Columbia University</div><p class="talk-title">Closing the Train-Test Gap in World Models for Gradient-based Planning</p></div><span class="tag">Planning</span></article>
+<article class="talk"><div class="time">4:45 PM</div><div><h3>Ying Wang</h3><div class="institution">New York University</div><p class="talk-title">Towards World Models That Learn and Adapt in an Open World</p></div><span class="tag">Adaptation</span></article>
+<article class="talk"><div class="time">5:15 PM</div><div><h3>Group Discussion</h3><p class="talk-title">Open discussion with workshop participants</p></div><span class="tag">Conversation</span></article>
+</div></section>
+<section class="section" id="photos"><div class="section-head"><div><span class="eyebrow">MOMENTS FROM THE WORKSHOP</span><h2>A photo story</h2><p class="photo-intro">A visual record of the talks, research exchanges, and conversations around the workshop.</p></div></div>
+<div class="gallery" id="photo-gallery" hidden></div>
+<div class="photo-placeholder" id="photo-pending"><div class="photo-symbol" aria-hidden="true">▧</div><h3>Photo story coming soon</h3><p>Photographs from the talks and group discussion will appear here as they are added to the workshop archive.</p></div>
+</section>
+<section class="section"><div class="discussion"><div><span class="eyebrow" style="color:#b9d5fa">BEYOND THE TALKS</span><h2>Continuing the conversation</h2><p>The workshop concluded with a group discussion, creating space to exchange questions and perspectives across world modeling, learning, and control.</p></div><div class="discussion-mark" aria-hidden="true">“”</div></div></section>
+<p class="support">This event was kindly sponsored by the <strong>Data Science Institute Center for Physical AI</strong> at Columbia University.</p>
+</main>
+<footer><div class="container footer-inner"><span>© <span id="year"></span> Anderson Lab · Columbia University</span><span><a href="/">← Back to ALab</a></span></div></footer>
+<dialog id="lightbox"><button type="button" id="close-lightbox" aria-label="Close photo">×</button><img id="large-photo" alt=""><div class="lightbox-caption" id="photo-caption"></div></dialog>
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+const theme=document.getElementById("theme");
+function setTheme(dark){document.body.classList.toggle("dark",dark);theme.textContent=dark?"☀":"☾";localStorage.setItem("anderson-theme",dark?"dark":"light")}
+setTheme(localStorage.getItem("anderson-theme")==="dark");
+theme.onclick=()=>setTheme(!document.body.classList.contains("dark"));
+// Add approved photos here when available. Paths are relative to this workshop page.
+// Example: {src:"/assets/workshops/world-models-2026/talk-01.jpg",caption:"Opening talk"}
+const workshopPhotos=[];
+const gallery=document.getElementById("photo-gallery");
+if(workshopPhotos.length){
+  document.getElementById("photo-pending").hidden=true;gallery.hidden=false;
+  workshopPhotos.forEach(photo=>{
+    const figure=document.createElement("figure");
+    const img=document.createElement("img");
+    img.src=photo.src;img.alt=photo.caption||"Workshop photograph";img.loading="lazy";
+    img.onclick=()=>{document.getElementById("large-photo").src=photo.src;document.getElementById("large-photo").alt=img.alt;document.getElementById("photo-caption").textContent=photo.caption||"";document.getElementById("lightbox").showModal()};
+    const caption=document.createElement("figcaption");caption.textContent=photo.caption||"";
+    figure.append(img,caption);gallery.append(figure);
+  });
+}
+document.getElementById("close-lightbox").onclick=()=>document.getElementById("lightbox").close();
+document.getElementById("lightbox").onclick=e=>{if(e.target.id==="lightbox")e.target.close()};
+</script>
+</body>
+</html>
