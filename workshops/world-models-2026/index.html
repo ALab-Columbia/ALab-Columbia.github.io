@@ -131,7 +131,7 @@ body.dark .jepa-art{background:#dfeafa;border-color:#466a98}
 <article class="speaker-card"><div class="speaker-portrait"><span class="initials">RA</span><img src="/assets/workshops/world-models-2026/speakers/rohun-agrawal.jpg" alt="Rohun Agrawal" loading="lazy" onerror="this.remove()"></div><div class="speaker-body"><h3>Rohun Agrawal</h3><p>Columbia University</p><span class="speaker-topic">Gradient-based planning with world models</span></div></article>
 <article class="speaker-card"><div class="speaker-portrait"><span class="initials">YW</span><img src="/assets/workshops/world-models-2026/speakers/ying-wang.jpg" alt="Ying Wang" loading="lazy" onerror="this.remove()"></div><div class="speaker-body"><h3>Ying Wang</h3><p>New York University</p><span class="speaker-topic">Learning and adaptation in an open world</span></div></article>
 </div></section>
-<section class="section" id="photos"><div class="section-head"><div><span class="eyebrow">MOMENTS FROM THE WORKSHOP</span><h2>A photo story</h2><p class="photo-intro">A visual record of the talks, research exchanges, and conversations around the workshop.</p></div></div>
+<section class="section" id="photos"><div class="section-head"><div><span class="eyebrow">MOMENTS FROM THE WORKSHOP</span><h2>A photo story</h2><p class="photo-intro">A visual record of the talks, research exchanges, and conversations around the workshop. Photographs appear here as they are added to the archive.</p></div></div>
 <div class="gallery" id="photo-gallery" hidden></div>
 <div class="photo-placeholder" id="photo-pending"><div class="photo-symbol" aria-hidden="true">▧</div><h3>Photo story coming soon</h3><p>Photographs from the talks and group discussion will appear here as they are added to the workshop archive.</p></div>
 </section>
@@ -145,21 +145,49 @@ const theme=document.getElementById("theme");
 function setTheme(dark){document.body.classList.toggle("dark",dark);theme.textContent=dark?"☀":"☾";localStorage.setItem("anderson-theme",dark?"dark":"light")}
 setTheme(localStorage.getItem("anderson-theme")==="dark");
 theme.onclick=()=>setTheme(!document.body.classList.contains("dark"));
-// Add approved photos here when available. Paths are relative to this workshop page.
-// Example: {src:"/assets/workshops/world-models-2026/talk-01.jpg",caption:"Opening talk"}
-const workshopPhotos=[];
+// Photo story: automatically discover consecutively numbered JPG images.
+// Place files in /assets/workshops/world-models-2026/story/photo-01.jpg, photo-02.jpg, etc.
+// The first missing number ends the gallery; keep numbering consecutive.
+// Optional: add human-readable captions here using two-digit photo numbers.
+const storyCaptions={
+  // "01": "Opening talk by Oumayma Bounou",
+  // "02": "Stephen Tu presenting",
+  // "03": "Group discussion",
+};
 const gallery=document.getElementById("photo-gallery");
-if(workshopPhotos.length){
-  document.getElementById("photo-pending").hidden=true;gallery.hidden=false;
-  workshopPhotos.forEach(photo=>{
+const photoPending=document.getElementById("photo-pending");
+const maxStoryPhotos=30;
+function loadStoryPhoto(index){
+  if(index>maxStoryPhotos)return;
+  const number=String(index).padStart(2,"0");
+  const src="/assets/workshops/world-models-2026/story/photo-"+number+".jpg";
+  const image=new Image();
+  image.onload=()=>{
+    const caption=storyCaptions[number]||"Workshop photo "+number;
     const figure=document.createElement("figure");
-    const img=document.createElement("img");
-    img.src=photo.src;img.alt=photo.caption||"Workshop photograph";img.loading="lazy";
-    img.onclick=()=>{document.getElementById("large-photo").src=photo.src;document.getElementById("large-photo").alt=img.alt;document.getElementById("photo-caption").textContent=photo.caption||"";document.getElementById("lightbox").showModal()};
-    const caption=document.createElement("figcaption");caption.textContent=photo.caption||"";
-    figure.append(img,caption);gallery.append(figure);
-  });
+    const thumb=document.createElement("img");
+    thumb.src=src;
+    thumb.alt=caption;
+    thumb.loading="lazy";
+    thumb.onclick=()=>{
+      document.getElementById("large-photo").src=src;
+      document.getElementById("large-photo").alt=caption;
+      document.getElementById("photo-caption").textContent=caption;
+      document.getElementById("lightbox").showModal();
+    };
+    const legend=document.createElement("figcaption");
+    legend.textContent=caption;
+    figure.append(thumb,legend);
+    gallery.append(figure);
+    photoPending.hidden=true;
+    gallery.hidden=false;
+    loadStoryPhoto(index+1);
+  };
+  // A missing numbered file marks the end of the gallery.
+  image.onerror=()=>{};
+  image.src=src;
 }
+loadStoryPhoto(1);
 document.getElementById("close-lightbox").onclick=()=>document.getElementById("lightbox").close();
 document.getElementById("lightbox").onclick=e=>{if(e.target.id==="lightbox")e.target.close()};
 </script>
