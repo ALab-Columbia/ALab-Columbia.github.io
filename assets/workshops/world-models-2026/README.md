@@ -48,6 +48,21 @@ Upload **one headshot per speaker** to the `speakers/` folder, using these **exa
 
 **No HTML edits are needed.** Once a file with the expected filename has been uploaded and GitHub Pages has published it, the corresponding speaker card will show the photo instead of the initials.
 
+## Portraits currently used on the website
+
+The following portraits were sourced from speakers' personal research pages or a research workshop page. The **exact `.jpg` filenames above still work**: uploading your own approved JPG with that name takes precedence over a fallback image.
+
+| Speaker | Current image | Original source |
+| --- | --- | --- |
+| Oumayma Bounou | **Stored in this repository** at `speakers/oumayma-bounou.jpg` | https://oumayb.github.io/ (self-published `assets/img/profile_2026.jpg`) |
+| Stephen Tu | **Stored in this repository** as `speakers/stephen-tu.png`, currently the fallback until `stephen-tu.jpg` is uploaded | https://stephentu.github.io/ (self-published `profile_photo.png`) |
+| Adam Block | **Loaded from original website** until `adam-block.jpg` is uploaded | https://abblock.github.io/portrait.jpg |
+| Yunzhu Li | **Loaded from original workshop website** until `yunzhu-li.jpg` is uploaded | https://deformable-workshop.github.io/icra2025/imgs/yunzhu.jpg |
+| Rohun Agrawal | **Stored in this repository** at `speakers/rohun-agrawal.jpg` | https://rohunagrawal.github.io/ (self-published `assets/img/portrait.jpg`) |
+| Ying Wang | **Loaded from original website** until `ying-wang.jpg` is uploaded | https://yingwangg.github.io/assets/img/headshot.jpg |
+
+The speaker cards credit their photograph sources. **Publicly accessible does not necessarily mean free to redistribute**. Please confirm permission or reuse rights with the photographer/speaker when using any photo on a public website. You can replace any portrait with a workshop photo that you have permission to publish.
+
 ## 2. Photo story (talks, discussion, candid moments)
 
 Upload workshop-event photos into the `story/` folder using consecutive, two-digit filenames:
